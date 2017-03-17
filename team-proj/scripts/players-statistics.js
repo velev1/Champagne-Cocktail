@@ -1,3 +1,4 @@
+//Test
 var $options = $("#options-container");
 var $playerButton = $("#btnStatisticsPleyer");
 $playerButton.on("click", function(e) {
