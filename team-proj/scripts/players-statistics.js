@@ -38,6 +38,8 @@ $playerButton.on("click", function (e) {
     }
 });
 
+
+
 var players = [{
         DataSet: '2013-2014 Regular Season',
         Date: '10/29/2013',
@@ -23313,4 +23315,28 @@ var players = [{
         Blocks: 0,
         Points: 2
     }
-]
+];
+
+
+
+var $list = $("<ul>")
+    .css("list-style-type", "none")
+    .css("overflow", "scroll")
+    .css("height", "50%")
+    .css("margin", "5px 35px")
+    .hide();
+var $li;
+var $choose = $("<button>")
+    .addClass("customButton")
+    .html("Choose a player")
+    .css("margin", "10px 35px")
+    .on("click", function(e) {
+        $list.toggle();
+    });
+players.forEach(p => {
+    $li = $("<li>").css("margin", "10px 35px");
+    $li.html(p.PlayerFullName);
+    $list.append($li);
+});
+$options.append($choose);
+$options.append($list);
