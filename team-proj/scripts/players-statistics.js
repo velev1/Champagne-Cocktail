@@ -14,8 +14,10 @@ $charts.css("background-color", "white") // Вместо .css ще е .addClass(
 
 //$options.hide();
 //$charts.hide();
+$containerDiv.hide(); // working so far
+
 $playerButton.on("click", function (e) {
-    //$options.fadeToggle();
+    //$options.fadeToggle(); 
     if ($charts.css("opacity") == 0.8) { //close
         $charts.animate({
             opacity: "0"
@@ -38,6 +40,13 @@ $playerButton.on("click", function (e) {
         $options.animate({ //open
             opacity: "0.8"
         }, 500);
+        if ($options.children().length <= 0) {  
+            fillAndAppendDiv();
+        }
+        else {
+            $options.find(".div-container").empty(); // working so far
+            fillAndAppendDiv();
+        }
         $containerDiv.show();
     }
 });
@@ -23321,61 +23330,63 @@ var players = [{
     }
 ];
 
-
-var uniqNamesObject = {};
-players.forEach(p => {
-    uniqNamesObject[p.PlayerFullName] = true;
-});
-
-var uniqNamesArray = Object.keys(uniqNamesObject).sort();
-
-var $list = $("<ul>")
-    // .css("list-style-type", "none")
-    // .css("overflow", "scroll")
-    // .css("height", "50%")
-    // .css("margin", "5px 35px")
-    .hide()
-    .addClass("player-list");
-
-var $li;
-var $label1 = $("<h4>"); // WARNING: changes size a bit
-
-var $choose = $("<button>")
-    .addClass("customButton")
-    .html("Choose a player")
-    .css("margin", "10px 35px")
-    .on("click", function(e) {
-        $list.toggle();
-        $label1.toggle();
+function fillAndAppendDiv() {
+    var uniqNamesObject = {};
+    players.forEach(p => {
+        uniqNamesObject[p.PlayerFullName] = true;
     });
 
-uniqNamesArray.forEach(name => {
-    $li = $("<li>").addClass("player");
-    $li.html(name);
-    $li.on("mouseover", function(e) {
-        var $target = $(e.target);
-        $target.addClass("hovered-player");
-    });
-    $li.on("mouseout", function(e) {
-        var $target = $(e.target);
-        $target.removeClass("hovered-player");
-    });
-    $li.on("click", function(e) {
-        var $target = $(e.target);
-        $label1.html("Selected player: " + $target.html());
-        $label1.show();
-        $list.toggle();
-    });
-    $list.append($li);
-});
+    var uniqNamesArray = Object.keys(uniqNamesObject).sort();
 
-$containerDiv.append($choose);
-$containerDiv.append($list);
-$containerDiv.append($label1);
 
+    var $list = $("<ul>")
+        // .css("list-style-type", "none")
+        // .css("overflow", "scroll")
+        // .css("height", "50%")
+        // .css("margin", "5px 35px")
+        .hide()
+        .addClass("player-list");
+
+    var $li;
+    var $label1 = $("<h4>"); // WARNING: changes size a bit
+
+    var $choose = $("<button>")
+        .addClass("customButton")
+        .html("Choose a player")
+        .css("margin", "10px 35px")
+        .on("click", function(e) {
+            $list.toggle();
+            $label1.toggle();
+        });
+
+    uniqNamesArray.forEach(name => {
+        $li = $("<li>").addClass("player");
+        $li.html(name);
+        $li.on("mouseover", function(e) {
+            var $target = $(e.target);
+            $target.addClass("hovered-player");
+        });
+        $li.on("mouseout", function(e) {
+            var $target = $(e.target);
+            $target.removeClass("hovered-player");
+        });
+        $li.on("click", function(e) {
+            var $target = $(e.target);
+            $label1.html("Selected player: " + $target.html());
+            $label1.show();
+            $list.toggle();
+        });
+        $list.append($li);
+    });
+
+    $containerDiv.append($choose);
+    $containerDiv.append($list);
+    $containerDiv.append($label1);
+    $options.append($containerDiv);
+}
 //before adding my div, clear the options container
-$options.html("");
-$options.append($containerDiv);
+//$options.append($containerDiv);
+
 
 //TODO: add the css for $charts and $options in a seperate file
 //TODO: encapsulate the logic in 1 function
