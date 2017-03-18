@@ -5,4 +5,5 @@ function ShowCompareOptions(){
 	aside.style.height = "400px";
 	aside.style.backgroundColor = "white";
 	aside.style.borderRadius = "12px";
+	aside.style.opacity=0.8;
 }
