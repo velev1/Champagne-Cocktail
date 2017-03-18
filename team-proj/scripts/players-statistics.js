@@ -1,4 +1,5 @@
 //Test
+var $containerDiv = $("<div>").addClass("div-container").hide();
 var $options = $("#options-container");
 var $playerButton = $("#btnStatisticsPleyer");
 var $charts = $("#charts-container");
@@ -19,22 +20,25 @@ $playerButton.on("click", function (e) {
         $charts.animate({
             opacity: "0"
         }, 500);
+        $containerDiv.hide();
     }
     else { //open
         $charts.animate({
             opacity: "0.8"
         }, 500);
+        $containerDiv.show();
     }
     if ($options.css("opacity") == 0.8) { //close
-        console.log($options.css("opacity"))
         $options.animate({
             opacity: "0"
         }, 500);
+        $containerDiv.hide();
     }
     else {
         $options.animate({ //open
             opacity: "0.8"
         }, 500);
+        $containerDiv.show();
     }
 });
 
@@ -23334,7 +23338,7 @@ var $list = $("<ul>")
     .addClass("player-list");
 
 var $li;
-var $label1 = $("<h3>");
+var $label1 = $("<h4>"); // WARNING: changes size a bit
 
 var $choose = $("<button>")
     .addClass("customButton")
@@ -23365,9 +23369,13 @@ uniqNamesArray.forEach(name => {
     $list.append($li);
 });
 
-$options.append($choose);
-$options.append($list);
-$options.append($label1);
+$containerDiv.append($choose);
+$containerDiv.append($list);
+$containerDiv.append($label1);
+
+//before adding my div, clear the options container
+$options.html("");
+$options.append($containerDiv);
 
 //TODO: add the css for $charts and $options in a seperate file
 //TODO: encapsulate the logic in 1 function
