@@ -23318,25 +23318,57 @@ var players = [{
 ];
 
 
+var uniqNamesObject = {};
+players.forEach(p => {
+    uniqNamesObject[p.PlayerFullName] = true;
+});
+
+var uniqNamesArray = Object.keys(uniqNamesObject).sort();
 
 var $list = $("<ul>")
-    .css("list-style-type", "none")
-    .css("overflow", "scroll")
-    .css("height", "50%")
-    .css("margin", "5px 35px")
-    .hide();
+    // .css("list-style-type", "none")
+    // .css("overflow", "scroll")
+    // .css("height", "50%")
+    // .css("margin", "5px 35px")
+    .hide()
+    .addClass("player-list");
+
 var $li;
+var $label1 = $("<h3>");
+
 var $choose = $("<button>")
     .addClass("customButton")
     .html("Choose a player")
     .css("margin", "10px 35px")
     .on("click", function(e) {
         $list.toggle();
+        $label1.toggle();
     });
-players.forEach(p => {
-    $li = $("<li>").css("margin", "10px 35px");
-    $li.html(p.PlayerFullName);
+
+uniqNamesArray.forEach(name => {
+    $li = $("<li>").addClass("player");
+    $li.html(name);
+    $li.on("mouseover", function(e) {
+        var $target = $(e.target);
+        $target.addClass("hovered-player");
+    });
+    $li.on("mouseout", function(e) {
+        var $target = $(e.target);
+        $target.removeClass("hovered-player");
+    });
+    $li.on("click", function(e) {
+        var $target = $(e.target);
+        $label1.html("Selected player: " + $target.html());
+        $label1.show();
+        $list.toggle();
+    });
     $list.append($li);
 });
+
 $options.append($choose);
 $options.append($list);
+$options.append($label1);
+
+//TODO: add the css for $charts and $options in a seperate file
+//TODO: encapsulate the logic in 1 function
+//TODO: clear the $options and $chart when the Player-Statistics button is clicked again
