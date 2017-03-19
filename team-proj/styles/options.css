@@ -17,16 +17,21 @@
     height: 100%;
 }
 
-#options-container {
+/*#options-container {
     background-color: white;
     opacity: 0;
+    border-radius: 10px;
+}*/
+
+.test {
+    background-color: white;
     border-radius: 10px;
 }
 
-#charts-container {
+/*#charts-container {
     background-color: white;
     opacity: 0;
     border-radius: 10px;
-}
+}*/
 
 /*fix*/
