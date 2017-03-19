@@ -17,4 +17,16 @@
     height: 100%;
 }
 
+#options-container {
+    background-color: white;
+    opacity: 0;
+    border-radius: 10px;
+}
+
+#charts-container {
+    background-color: white;
+    opacity: 0;
+    border-radius: 10px;
+}
+
 /*fix*/

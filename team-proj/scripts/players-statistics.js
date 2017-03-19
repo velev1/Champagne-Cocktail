@@ -7,20 +7,9 @@ var $options = $("#options-container");
 var $playerButton = $("#btnStatisticsPleyer");
 var $charts = $("#charts-container");
 
-$options.css("background-color", "white") // Вместо .css ще е .addClass() след като има готов във css файла със същите стойности
-    .css("opacity", "0")
-    .css("border-radius", "10px");
-
-$charts.css("background-color", "white") // Вместо .css ще е .addClass() след като има готов във css файла със същите стойности
-    .css("opacity", "0")
-    .css("border-radius", "10px");
-
-//$options.hide();
-//$charts.hide();
 $containerDiv.hide(); // working so far
 
 $playerButton.on("click", function (e) {
-    //$options.fadeToggle();
     
     //Show $charts
 
