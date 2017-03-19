@@ -1,0 +1,20 @@
+.player-list {
+    list-style-type: none;
+    overflow: scroll;
+    height: 50%;
+    margin: 5px 35px
+}
+
+.player {
+    padding: 10px 35px
+}
+
+.hovered-player {
+    background-color: slategrey;
+}
+
+.div-container {
+    height: 100%;
+}
+
+/*fix*/
