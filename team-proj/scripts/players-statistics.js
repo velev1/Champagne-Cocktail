@@ -2,16 +2,26 @@
 
 var players = getPlayerData();
 
-var $containerDiv = $("<div>").addClass("div-container").hide();
+var $containerDiv = $("<div>").addClass("div-container");
 var $options = $("#options-container");
 var $playerButton = $("#btnStatisticsPleyer");
 var $charts = $("#charts-container");
 
-$containerDiv.hide(); // working so far
+//$containerDiv.hide(); // working so far
 
 $playerButton.on("click", function (e) {
-    
+    while($options.children().length > 0) {
+        $options.remove($options.first());
+    }
+    fillAndAppendDiv();
+
+
+
+
+
+
     //Show $charts
+
 
     // if ($charts.css("opacity") == 0.8) { //close
     //     $charts.animate({
@@ -25,27 +35,25 @@ $playerButton.on("click", function (e) {
     //     }, 500);
     //     $containerDiv.show();
     // }
-
-
-    if ($options.css("opacity") == 0.8) { //close
-        $options.animate({
-            opacity: "0"
-        }, 500);
-        $containerDiv.hide();
-    }
-    else {
-        $options.animate({ //open
-            opacity: "0.8"
-        }, 500);
-        if ($options.children().length <= 0) {  
-            fillAndAppendDiv();
-        }
-        else {
-            $options.find(".div-container").empty(); // working so far
-            fillAndAppendDiv();
-        }
-        $containerDiv.show();
-    }
+    // if ($options.css("opacity") == 0.8) { //close
+    //     $options.animate({
+    //         opacity: "0"
+    //     }, 500);
+    //     $containerDiv.hide();
+    // }
+    // else {
+    //     $options.animate({ //open
+    //         opacity: "0.8"
+    //     }, 500);
+    //     if ($options.children().length <= 0) {  
+    //         fillAndAppendDiv();
+    //     }
+    //     else {
+    //         $options.find(".div-container").empty(); // working so far
+    //         fillAndAppendDiv();
+    //     }
+    //     $containerDiv.show();
+    // }
 });
 
 
@@ -104,6 +112,7 @@ function fillAndAppendDiv() {
     $containerDiv.append($choose);
     $containerDiv.append($list);
     $containerDiv.append($label1);
+    $containerDiv.addClass("test");
     $options.append($containerDiv);
 }
 //before adding my div, clear the options container
