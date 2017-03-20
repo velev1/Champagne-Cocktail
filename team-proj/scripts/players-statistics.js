@@ -10,10 +10,13 @@ var $charts = $("#charts-container");
 //$containerDiv.hide(); // working so far
 
 $playerButton.on("click", function (e) {
-    while($options.children().length > 0) {
-        $options.remove($options.first());
-    }
-    fillAndAppendDiv();
+    // while (!$options.has("div")) {
+    //     //$options.remove($options.first()); // ne gurmi
+    //     $options.first().remove();
+    // }
+    // fillAndAppendDiv();
+
+    newFunc();
 
 
 
@@ -60,7 +63,7 @@ $playerButton.on("click", function (e) {
 
 
 
-function fillAndAppendDiv() {
+function fillAndAppendDiv() { // not working
     var uniqNamesObject = {};
     players.forEach(p => {
         uniqNamesObject[p.PlayerFullName] = true;
@@ -84,7 +87,7 @@ function fillAndAppendDiv() {
         .addClass("customButton")
         .html("Choose a player")
         .css("margin", "10px 35px")
-        .on("click", function(e) {
+        .on("click", function (e) {
             $list.toggle();
             $label1.toggle();
         });
@@ -92,15 +95,15 @@ function fillAndAppendDiv() {
     uniqNamesArray.forEach(name => {
         $li = $("<li>").addClass("player");
         $li.html(name);
-        $li.on("mouseover", function(e) {
+        $li.on("mouseover", function (e) {
             var $target = $(e.target);
             $target.addClass("hovered-player");
         });
-        $li.on("mouseout", function(e) {
+        $li.on("mouseout", function (e) {
             var $target = $(e.target);
             $target.removeClass("hovered-player");
         });
-        $li.on("click", function(e) {
+        $li.on("click", function (e) {
             var $target = $(e.target);
             $label1.html("Selected player: " + $target.html());
             $label1.show();
@@ -114,6 +117,76 @@ function fillAndAppendDiv() {
     $containerDiv.append($label1);
     $containerDiv.addClass("test");
     $options.append($containerDiv);
+}
+
+
+function newFunc() {
+    var btn = document.getElementById("btnStatisticsPleyer");
+    btn.addEventListener("click", function createOptionsPlayerStatistics() {
+        var el = document.getElementById("options-container");
+        while (el.firstChild) {
+            el.removeChild(el.firstChild);
+        }
+
+        var conteiner = document.createElement("div");
+        conteiner.className = "div-container";
+        //appends :
+        var uniqNamesObject = {};
+        players.forEach(p => {
+            uniqNamesObject[p.PlayerFullName] = true;
+        });
+
+        var uniqNamesArray = Object.keys(uniqNamesObject).sort();
+
+        var list = document.createElement("ul");
+
+
+        var $choose = $("<button>")
+            .addClass("customButton")
+            .html("Choose a player")
+            .css("margin", "10px 35px")
+            .on("click", function (e) {
+                $list.toggle();
+                $label1.toggle();
+            });
+        var $label1 = $("<h4>");
+
+        var $list;
+        var $li;
+        for (let i = 0, len = uniqNamesArray.length; i < len; i += 1) {
+            var li = document.createElement("li");
+            li.innerHTML = uniqNamesArray[i];
+
+            $li = $(li).addClass("player");
+            $li.on("mouseover", function (e) {
+                var $target = $(e.target);
+                $target.addClass("hovered-player");
+            });
+            $li.on("mouseout", function (e) {
+                var $target = $(e.target);
+                $target.removeClass("hovered-player");
+            });
+            $li.on("click", function (e) {
+                var $target = $(e.target);
+                $label1.html("Selected player: " + $target.html());
+                $label1.show();
+                $list.toggle();
+            });
+
+            list.appendChild($li.get(0));
+        }
+
+        $list = $(list)
+            .hide()
+            .addClass("player-list");
+
+        conteiner.appendChild($choose.get(0));
+        conteiner.appendChild($list.get(0));
+        conteiner.appendChild($label1.get(0));
+        conteiner.className += " test"; // background for the div
+        //conteiner.className = "test";
+        el.appendChild(conteiner);
+    });
 }
 //before adding my div, clear the options container
 //$options.append($containerDiv);
