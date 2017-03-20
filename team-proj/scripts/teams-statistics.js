@@ -35,18 +35,23 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
 
 function createSelectTeamNames() {
 
-    var teams = getTeamData();
+    var teams = teamData();
     var uniqTeams = {};
     teams.forEach(t => {
         uniqTeams[t.Teams] = true;
     });
     var uniqTeamsArray = Object.keys(uniqTeams).sort();
-
+    
     var select = document.createElement("select");
 
+     let opt = document.createElement("option");
+        opt.setAttribute("value", 0);
+        opt.innerHTML = "select team";
+        select.appendChild(opt);
+
     for (let i = 0, len = uniqTeamsArray.length; i < len; i += 1) {
-        let opt = document.createElement("option");
-        opt.setAttribute("value", i);
+        opt = document.createElement("option");
+        opt.setAttribute("value", (i + 1));
         opt.innerHTML = uniqTeamsArray[i];
         select.appendChild(opt);
     }
