@@ -63,8 +63,14 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
 
             //testing the draw function - it should delete any graphic before it draws
             var dataArray = calculatePlayerData($target.html());
+            var labelArray = ["Three point accuracy", "Two point accuracy", "Free throw accuracy", "Personal fouls", "Rebounds", "Assists", "Blocks", "Steals"];
             var draw = getCharts;
-            draw(["Label1", "Label2"], dataArray);
+            var drawObj = getChartsObj;
+            drawObj.data.labels = labelArray;
+            drawObj.data.datasets[0].data = dataArray;
+            draw(drawObj);
+
+            //draw([labels....], dataArray); // old way
         });
 
         list.appendChild($li.get(0));
@@ -85,25 +91,42 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
 function calculatePlayerData(playerName) {
     var player = players.find(p => p.PlayerFullName === playerName);
 
-    var threePointsAccuracy = (player.ThreePointFieldGoalsMade / player.ThreePointFieldGoalsAttempted) * 100;
-    var twoPointsAccuracy = (player.FieldGoalsMade - player.FreeThrowsMade - player.ThreePointFieldGoalsMade) /
-        (player.FieldGoalsAttempted - player.FreeThrowsAttempted - player.ThreePointFieldGoalsAttempted) * 100;
-    var freeThrowsAccuracy = (player.FreeThrowsMade / player.FreeThrowsAttempted) * 100;
-    var personalFouls = player.PersonalFouls;
-    var rebounds = player.TotalRebounds;
-    var assists = player.Assists;
-    var blocks = player.Blocks;
-    var steals = player.Steals;
+    // var threePointsAccuracy = (player.ThreePointFieldGoalsMade / player.ThreePointFieldGoalsAttempted) * 100;
+    // var twoPointsAccuracy = (player.FieldGoalsMade - player.FreeThrowsMade - player.ThreePointFieldGoalsMade) /
+    //     (player.FieldGoalsAttempted - player.FreeThrowsAttempted - player.ThreePointFieldGoalsAttempted) * 100;
+    // var freeThrowsAccuracy = (player.FreeThrowsMade / player.FreeThrowsAttempted) * 100;
+    // var personalFouls = player.PersonalFouls;
+    // var rebounds = player.TotalRebounds;
+    // var assists = player.Assists;
+    // var blocks = player.Blocks;
+    // var steals = player.Steals;
+
+    // resultArray.push(checkData(freeThrowsAccuracy));
+    // resultArray.push(checkData(twoPointsAccuracy));
+    // resultArray.push(checkData(threePointsAccuracy));
+    // resultArray.push(checkData(personalFouls));
+    // resultArray.push(checkData(rebounds));
+    // resultArray.push(checkData(assists));
+    // resultArray.push(checkData(blocks));
+    // resultArray.push(checkData(steals));
+
+    var dataObj = {
+        threePointsAccuracy: checkData((player.ThreePointFieldGoalsMade / player.ThreePointFieldGoalsAttempted) * 100),
+        twoPointsAccuracy: checkData((player.FieldGoalsMade - player.FreeThrowsMade - player.ThreePointFieldGoalsMade) /
+            (player.FieldGoalsAttempted - player.FreeThrowsAttempted - player.ThreePointFieldGoalsAttempted) * 100),
+        freeThrowsAccuracy: checkData((player.FreeThrowsMade / player.FreeThrowsAttempted) * 100),
+        personalFouls: checkData(player.PersonalFouls),
+        rebounds: checkData(player.TotalRebounds),
+        assists: checkData(player.Assists),
+        blocks: checkData(player.Blocks),
+        steals: checkData(player.Steals)
+    };
 
     var resultArray = [];
-    resultArray.push(checkData(freeThrowsAccuracy));
-    resultArray.push(checkData(twoPointsAccuracy));
-    resultArray.push(checkData(threePointsAccuracy));
-    resultArray.push(checkData(personalFouls));
-    resultArray.push(checkData(rebounds));
-    resultArray.push(checkData(assists));
-    resultArray.push(checkData(blocks));
-    resultArray.push(checkData(steals));
+    for (let i in dataObj) {
+        resultArray.push(dataObj[i]);
+    }
+    
 
     function checkData(data) {
         if (Number.isNaN(data)) {
@@ -117,5 +140,8 @@ function calculatePlayerData(playerName) {
 }
 
 
-
+//TODO: delete the canvas before adding mine
+//TODO: remove animation from chartsjs
+//TODO: research what a string in the dataArray does
+//TODO: fix the colors of my graph
 //TODO: encapsulate the logic in 1 function
