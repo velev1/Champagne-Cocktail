@@ -60,8 +60,11 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
             $label1.show();
             $list.toggle();
 
-            //testing new function
-            calculatePlayerData($target.html());
+
+            //testing the draw function - it should delete any graphic before it draws
+            var dataArray = calculatePlayerData($target.html());
+            var draw = getCharts;
+            draw(["Label1", "Label2"], dataArray);
         });
 
         list.appendChild($li.get(0));
@@ -110,7 +113,9 @@ function calculatePlayerData(playerName) {
     }
 
     // send to canvas or write canvas below func
-    return resultArray; 
+    return resultArray;
 }
+
+
 
 //TODO: encapsulate the logic in 1 function
