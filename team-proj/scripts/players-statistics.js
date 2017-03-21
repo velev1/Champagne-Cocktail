@@ -6,6 +6,7 @@ var $containerDiv = $("<div>").addClass("div-container");
 var $options = $("#options-container");
 var $playerButton = $("#btnStatisticsPleyer");
 var $charts = $("#charts-container");
+var charts = document.getElementById("charts-container");
 
 var btn = document.getElementById("btnStatisticsPleyer");
 
@@ -62,15 +63,20 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
 
 
             //testing the draw function - it should delete any graphic before it draws
+            //make new canvas and delete the old one everytime a li is clicked and get rid of the ctx from the IIFE
+            // while (charts.firstChild) {
+            //     charts.removeChild(charts.firstChild);
+            // }
+
             var dataArray = calculatePlayerData($target.html());
-            var labelArray = ["Three point accuracy", "Two point accuracy", "Free throw accuracy", "Personal fouls", "Rebounds", "Assists", "Blocks", "Steals"];
+            var labelArray = ["Three point accuracy", "Two point accuracy", "Free throw accuracy"];
             var draw = getCharts;
             var drawObj = getChartsObj;
             drawObj.data.labels = labelArray;
             drawObj.data.datasets[0].data = dataArray;
-            draw(drawObj);
 
-            //draw([labels....], dataArray); // old way
+            //show the graph
+            draw(drawObj);
         });
 
         list.appendChild($li.get(0));
@@ -91,29 +97,10 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
 function calculatePlayerData(playerName) {
     var player = players.find(p => p.PlayerFullName === playerName);
 
-    // var threePointsAccuracy = (player.ThreePointFieldGoalsMade / player.ThreePointFieldGoalsAttempted) * 100;
-    // var twoPointsAccuracy = (player.FieldGoalsMade - player.FreeThrowsMade - player.ThreePointFieldGoalsMade) /
-    //     (player.FieldGoalsAttempted - player.FreeThrowsAttempted - player.ThreePointFieldGoalsAttempted) * 100;
-    // var freeThrowsAccuracy = (player.FreeThrowsMade / player.FreeThrowsAttempted) * 100;
-    // var personalFouls = player.PersonalFouls;
-    // var rebounds = player.TotalRebounds;
-    // var assists = player.Assists;
-    // var blocks = player.Blocks;
-    // var steals = player.Steals;
-
-    // resultArray.push(checkData(freeThrowsAccuracy));
-    // resultArray.push(checkData(twoPointsAccuracy));
-    // resultArray.push(checkData(threePointsAccuracy));
-    // resultArray.push(checkData(personalFouls));
-    // resultArray.push(checkData(rebounds));
-    // resultArray.push(checkData(assists));
-    // resultArray.push(checkData(blocks));
-    // resultArray.push(checkData(steals));
-
     var dataObj = {
         threePointsAccuracy: checkData((player.ThreePointFieldGoalsMade / player.ThreePointFieldGoalsAttempted) * 100),
-        twoPointsAccuracy: checkData((player.FieldGoalsMade - player.FreeThrowsMade - player.ThreePointFieldGoalsMade) /
-            (player.FieldGoalsAttempted - player.FreeThrowsAttempted - player.ThreePointFieldGoalsAttempted) * 100),
+        twoPointsAccuracy: checkData((player.FieldGoalsMade - player.ThreePointFieldGoalsMade) /
+            (player.FieldGoalsAttempted - player.ThreePointFieldGoalsAttempted) * 100),
         freeThrowsAccuracy: checkData((player.FreeThrowsMade / player.FreeThrowsAttempted) * 100),
         personalFouls: checkData(player.PersonalFouls),
         rebounds: checkData(player.TotalRebounds),
@@ -126,7 +113,7 @@ function calculatePlayerData(playerName) {
     for (let i in dataObj) {
         resultArray.push(dataObj[i]);
     }
-    
+    resultArray = resultArray.slice(0, 3); // choose only the percent data for the graph
 
     function checkData(data) {
         if (Number.isNaN(data)) {
