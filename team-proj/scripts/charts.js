@@ -5,7 +5,8 @@ var getCharts = (function () {
     };
 })();
 
-var getChartsObj = (function () {
+var getChartsObj = (function chart() {
+
     return {
         type: 'bar',
         data: {
@@ -53,6 +54,22 @@ var getChartsObj = (function () {
     };
 })();
 
+function drawChart(labelsArr, calculatedValuesArr) {
+
+    var drawObj = getChartsObj;
+    drawObj.data.labels = labelsArr;
+    drawObj.data.datasets[0].data = calculatedValuesArr;
+    var draw = getCharts;
+    
+    var charts = document.getElementById("charts-container");
+    var $charts = $("#charts-container");
+    while (charts.firstChild) {
+        charts.removeChild(charts.firstChild);
+    }
+    $charts.append('<canvas id="myChart" style:"width:100% !important; height:100% !important"> </canvas>');
+
+    draw(drawObj);
+}
 
 
 

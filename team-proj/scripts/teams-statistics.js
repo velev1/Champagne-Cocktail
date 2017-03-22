@@ -36,7 +36,9 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
 
     el.appendChild(container);
     btnCalculate.addEventListener("click", function calc() {
-
+        var arr1 = ["joro","petkan"];
+        var arr2 = [43,42];
+        drawChart(arr1, arr2);
         calculateTeamStatistic.winRate();
 
         console.log(calculateTeamStatistic.winRate());
