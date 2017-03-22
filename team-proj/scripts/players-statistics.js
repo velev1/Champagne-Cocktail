@@ -12,9 +12,15 @@ var btn = document.getElementById("btnStatisticsPleyer");
 
 btn.addEventListener("click", function createOptionsPlayerStatistics() {
     var el = document.getElementById("options-container");
+    //clear the options container
     while (el.firstChild) {
         el.removeChild(el.firstChild);
     }
+    //clear the chart container
+    while (charts.firstChild) {
+        charts.removeChild(charts.firstChild);
+    }
+    $charts.append('<canvas id="myChart" style:"width:100% !important; height:100% !important"> </canvas>');
 
     var conteiner = document.createElement("div");
     conteiner.className = "div-container";
@@ -74,7 +80,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
             drawObj.data.datasets[0].data = dataArray;
 
             //hide old graph
-            while(charts.firstChild) {
+            while (charts.firstChild) {
                 charts.removeChild(charts.firstChild);
             }
             $charts.append('<canvas id="myChart" style:"width:100% !important; height:100% !important"> </canvas>');
@@ -116,11 +122,11 @@ function calculatePlayerData(playerName) {
         twoPointsAccuracy: checkData((player.FieldGoalsMade - player.ThreePointFieldGoalsMade) /
             (player.FieldGoalsAttempted - player.ThreePointFieldGoalsAttempted) * 100),
         freeThrowsAccuracy: checkData((player.FreeThrowsMade / player.FreeThrowsAttempted) * 100),
-        personalFouls: checkData(player.PersonalFouls),
-        rebounds: checkData(player.TotalRebounds),
-        assists: checkData(player.Assists),
-        blocks: checkData(player.Blocks),
-        steals: checkData(player.Steals)
+        personalFouls: player.PersonalFouls,
+        rebounds: player.TotalRebounds,
+        assists: player.Assists,
+        blocks: player.Blocks,
+        steals: player.Steals
     };
 
     var resultArray = [];
@@ -133,10 +139,9 @@ function calculatePlayerData(playerName) {
         if (Number.isNaN(data)) {
             return "No such statistic";
         }
-        return data;
+        return data.toFixed(2);
     }
 
-    // send to canvas or write canvas below func
     return {
         resultArray: resultArray,
         dataObj: dataObj
@@ -144,7 +149,4 @@ function calculatePlayerData(playerName) {
 }
 
 
-//DONE: delete the canvas before adding mine
-//TODO: fix the floating point numbers
-//TODO: research what a string in the dataArray does
 //TODO: encapsulate the logic in 1 function

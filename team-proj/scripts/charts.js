@@ -43,8 +43,8 @@ var getChartsObj = (function () {
             scales: {
                 yAxes: [{
                     ticks: {
-                        max: 100,
-                        min: 0,
+                        max: 100, //added by men
+                        min: 0, //added by me
                         beginAtZero: true
                     }
                 }]
