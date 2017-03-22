@@ -29,14 +29,19 @@ body {
 
 header {
     height: 60px;
-    background-color: #4484ce;
+    background: rgba(245,245,245,1);
+    background: -moz-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 1%, rgba(102,152,209,1) 43%, rgba(68,132,206,1) 59%, rgba(68,132,206,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245,245,245,1)), color-stop(1%, rgba(245,245,245,1)), color-stop(43%, rgba(102,152,209,1)), color-stop(59%, rgba(68,132,206,1)), color-stop(100%, rgba(68,132,206,1)));
+    background: -webkit-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 1%, rgba(102,152,209,1) 43%, rgba(68,132,206,1) 59%, rgba(68,132,206,1) 100%);
+    background: -o-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 1%, rgba(102,152,209,1) 43%, rgba(68,132,206,1) 59%, rgba(68,132,206,1) 100%);
+    background: -ms-linear-gradient(top, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 1%, rgba(102,152,209,1) 43%, rgba(68,132,206,1) 59%, rgba(68,132,206,1) 100%);
+    background: linear-gradient(to bottom, rgba(245,245,245,1) 0%, rgba(245,245,245,1) 1%, rgba(102,152,209,1) 43%, rgba(68,132,206,1) 59%, rgba(68,132,206,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#4484ce', GradientType=0 );
     width:100%;
     display:flex;
     justify-content: center;
     flex-flow: row wrap;
 }
-
-
 
 @media only screen and (max-width: 694px) {
         nav {
