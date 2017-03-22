@@ -37,8 +37,10 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
         .on("click", function (e) {
             $list.toggle();
             $label1.toggle();
+            $p.toggle();
         });
     var $label1 = $("<h4>");
+    var $p = $("<p>");
 
     var $list;
     var $li;
@@ -59,6 +61,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
             var $target = $(e.target);
             $label1.html("Selected player: " + $target.html());
             $label1.show();
+            $p.show();
             $list.toggle();
 
             //graph data
@@ -79,14 +82,14 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
             //draw new one
             draw(drawObj);
 
-            //adding the non-percentage data to the $options
-            // var p = $("<p>");
-            // p.text("Total fouls for the season: " + values.personalFouls + "\n" +
-            //     "Total rebounds for the season: " + values.rebounds + "\n" +
-            //     "Total assists for the season: " + values.assists + "\n" +
-            //     "Total blocks for the season: " + values.blocks + "\n" +
-            //     "Total steals for the season: " + values.steals);
-            // $options.append(p);
+            //adding the non-percentage data to the paragraph
+            $p.text("Total fouls for the season: " + values.personalFouls + "\n" +
+                "Total rebounds for the season: " + values.rebounds + "\n" +
+                "Total assists for the season: " + values.assists + "\n" +
+                "Total blocks for the season: " + values.blocks + "\n" +
+                "Total steals for the season: " + values.steals);
+            var $pText = $p.text();
+            $p.html($pText.replace(/\n/g, '<br />'));
         });
 
         list.appendChild($li.get(0));
@@ -100,6 +103,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
     conteiner.appendChild($choose.get(0));
     conteiner.appendChild($list.get(0));
     conteiner.appendChild($label1.get(0));
+    conteiner.appendChild($p.get(0));
     conteiner.className += " test"; // background for the div
     el.appendChild(conteiner);
 });

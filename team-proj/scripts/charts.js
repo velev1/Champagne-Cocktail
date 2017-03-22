@@ -11,7 +11,7 @@ var getChartsObj = (function () {
         data: {
             labels: [],
             datasets: [{
-                label: '# of Votes',
+                label: '% for a successful shot',
                 data: [],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -37,6 +37,9 @@ var getChartsObj = (function () {
             }]
         },
         options: {
+            legend: {
+                display: false //added by me
+            },
             scales: {
                 yAxes: [{
                     ticks: {
