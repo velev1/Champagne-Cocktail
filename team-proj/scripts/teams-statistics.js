@@ -6,7 +6,7 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     while (el.firstChild) {
         el.removeChild(el.firstChild);
     }
-
+    clearChart();
     var container = document.createElement("div");
     var titleAside = document.createElement("h4");
     titleAside.innerHTML = "Team statistics";
@@ -41,11 +41,11 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
         drawChart(arr1, arr2);
         calculateTeamStatistic.winRate();
 
-        console.log(calculateTeamStatistic.winRate());
+        // console.log(calculateTeamStatistic.winRate());
     });
 
-    var bla = calculateTeamStatistic.teamStats();
-    console.log(bla);
+    // var bla = calculateTeamStatistic.teamStats();
+    // console.log(bla);
 });
 
 function createSelectTeamNames() {

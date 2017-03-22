@@ -60,18 +60,20 @@ function drawChart(labelsArr, calculatedValuesArr) {
     drawObj.data.labels = labelsArr;
     drawObj.data.datasets[0].data = calculatedValuesArr;
     var draw = getCharts;
-    
+
+    clearChart();
+
+    draw(drawObj);
+}
+
+function clearChart() {
     var charts = document.getElementById("charts-container");
     var $charts = $("#charts-container");
     while (charts.firstChild) {
         charts.removeChild(charts.firstChild);
     }
     $charts.append('<canvas id="myChart" style:"width:100% !important; height:100% !important"> </canvas>');
-
-    draw(drawObj);
 }
-
-
 
 // var ctx = document.getElementById("myChart");
 // var myChart = new Chart(ctx, {
