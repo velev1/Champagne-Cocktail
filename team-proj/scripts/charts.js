@@ -45,8 +45,7 @@ var getChartsObj = (function () {
                         beginAtZero: true
                     }
                 }]
-            },
-            animation: false // added by me
+            }
         }
     };
 })();

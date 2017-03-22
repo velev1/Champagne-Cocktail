@@ -61,22 +61,32 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
             $label1.show();
             $list.toggle();
 
-
-            //testing the draw function - it should delete any graphic before it draws
-            //make new canvas and delete the old one everytime a li is clicked and get rid of the ctx from the IIFE
-            // while (charts.firstChild) {
-            //     charts.removeChild(charts.firstChild);
-            // }
-
-            var dataArray = calculatePlayerData($target.html());
+            //graph data
+            var dataArray = calculatePlayerData($target.html()).resultArray;
+            var values = calculatePlayerData($target.html()).dataObj;
             var labelArray = ["Three point accuracy", "Two point accuracy", "Free throw accuracy"];
             var draw = getCharts;
             var drawObj = getChartsObj;
             drawObj.data.labels = labelArray;
             drawObj.data.datasets[0].data = dataArray;
 
-            //show the graph
+            //hide old graph
+            while(charts.firstChild) {
+                charts.removeChild(charts.firstChild);
+            }
+            $charts.append('<canvas id="myChart" style:"width:100% !important; height:100% !important"> </canvas>');
+
+            //draw new one
             draw(drawObj);
+
+            //adding the non-percentage data to the $options
+            // var p = $("<p>");
+            // p.text("Total fouls for the season: " + values.personalFouls + "\n" +
+            //     "Total rebounds for the season: " + values.rebounds + "\n" +
+            //     "Total assists for the season: " + values.assists + "\n" +
+            //     "Total blocks for the season: " + values.blocks + "\n" +
+            //     "Total steals for the season: " + values.steals);
+            // $options.append(p);
         });
 
         list.appendChild($li.get(0));
@@ -123,12 +133,14 @@ function calculatePlayerData(playerName) {
     }
 
     // send to canvas or write canvas below func
-    return resultArray;
+    return {
+        resultArray: resultArray,
+        dataObj: dataObj
+    };
 }
 
 
-//TODO: delete the canvas before adding mine
-//TODO: remove animation from chartsjs
+//DONE: delete the canvas before adding mine
+//TODO: fix the floating point numbers
 //TODO: research what a string in the dataArray does
-//TODO: fix the colors of my graph
 //TODO: encapsulate the logic in 1 function
