@@ -11,8 +11,68 @@
 // -	Steals per game
 
 
-var calculateTeamStatistic = (function(){
+var calculateTeamStatistic = (function () {
+
+    var teamStats = function () {
+        var data = teamData();
+        var filteredArrbyName = [];
+
+        let sel = document.getElementById("select-team-names");
+        let teamName = sel.options[sel.selectedIndex].value;
+
+        for (let i = 0, len = data.length; i < len; i += 1) {
+            if (data[i].teamGuestName === teamName) {
+                filteredArrbyName.push(data[i]);
+            }
+            if (data[i].teamHostName === teamName) {
+                filteredArrbyName.push(data[i]);
+            }
+        }
+
+        return filteredArrbyName;
+    }
 
     //Win rate for the season for each team separately 
     // All wins devided 
+
+    var winRate = function () {
+        let rate;
+        let teamMatchesContainer = [];
+
+        let matchesOftheTeam = teamStats();
+        let wins = 0;
+
+        let len = matchesOftheTeam.length;
+        let sel = document.getElementById("select-team-names");
+        let teamName = sel.options[sel.selectedIndex].value;
+        for (let i = 0; i < len; i += 1) {
+
+
+            if (matchesOftheTeam[i].teamGuestName === teamName) {
+
+                if (matchesOftheTeam[i].finalPointsGuest > matchesOftheTeam[i].finalPointsHost) {
+                    wins += 1;
+                }
+            }
+
+            if (matchesOftheTeam[i].teamHostName === teamName) {
+
+                if (matchesOftheTeam[i].finalPointsHost > matchesOftheTeam[i].finalPointsGuest) {
+                    wins += 1;
+                }
+            }
+        }
+
+        rate = (wins / matchesOftheTeam.length) * 100;
+        return rate.toFixed(2);
+    }
+
+    return {
+        teamStats: teamStats,
+        winRate: winRate
+    };
+
 })();
+
+
+

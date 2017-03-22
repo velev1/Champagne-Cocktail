@@ -27,34 +27,52 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     btnCalculate.setAttribute("type", "button");
     btnCalculate.setAttribute("class", "customButton");
     btnCalculate.setAttribute("value", "Calculate");
+    btnCalculate.setAttribute("id", "btnCalculateTeamStats");
+
 
     container.appendChild(btnCalculate);
 
+
+
     el.appendChild(container);
+    btnCalculate.addEventListener("click", function calc() {
+
+        calculateTeamStatistic.winRate();
+
+        console.log(calculateTeamStatistic.winRate());
+    });
+
+    var bla = calculateTeamStatistic.teamStats();
+    console.log(bla);
 });
 
 function createSelectTeamNames() {
 
     var teams = teamData();
     var uniqTeams = {};
+
     teams.forEach(t => {
-        uniqTeams[t.Teams] = true;
+        uniqTeams[t.teamHostName] = true;
+        uniqTeams[t.teamGuestName] = true;
     });
     var uniqTeamsArray = Object.keys(uniqTeams).sort();
-    
-    var select = document.createElement("select");
 
-     let opt = document.createElement("option");
-        opt.setAttribute("value", 0);
-        opt.innerHTML = "select team";
-        select.appendChild(opt);
+    var select = document.createElement("select");
+    select.setAttribute("id", "select-team-names")
+
+    let opt = document.createElement("option");
+    opt.setAttribute("value", 0);
+    opt.innerHTML = "select team";
+    select.appendChild(opt);
 
     for (let i = 0, len = uniqTeamsArray.length; i < len; i += 1) {
         opt = document.createElement("option");
-        opt.setAttribute("value", (i + 1));
+        opt.setAttribute("value", uniqTeamsArray[i]);
         opt.innerHTML = uniqTeamsArray[i];
         select.appendChild(opt);
     }
+
+    
 
     return select;
 }

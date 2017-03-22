@@ -5,23 +5,36 @@ var teamMatches = [
         teamGuestName:'',
         pointsHost:'',
         pointsGuest:'',
-        attemptsHost:'',
-        attemptsGuest:'',
+       
         freeThrowsAttemptHost:'',
         freeThrowsAttemptGuest:'',
         freeThrowsMadeHost:'',
         freeThrowsMadeGuest:'',
+
         twoPointAttemptHost:'',
         twoPointAttemptGuest:'',
         twoPointMadeHost:'',
         twoPointMadeGuest:'',
+
         threePointAttemptHost:'',
         threePointAttemptGuest:'',
         threePointMadeHost:'',
         threePointGuestHost:'',
+
         personalFoulsHost:'',
         personalFoulsGuest:'',
+
         reboundsHost:'',
         reboundsGuest:'',
+
+        assistsHost:'',
+        assistsGuest:'',
+
+        blocksHost:'',
+        blocksGuest:'',
+
+        steelsHost:'',
+        steelsGuest:'',
+
     }
 ]
