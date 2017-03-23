@@ -37,7 +37,7 @@ var calculateTeamStatistic = (function () {
 
     var winRate = function () {
         let rate;
-        let teamMatchesContainer = [];
+        //let teamMatchesContainer = [];
 
         let matchesOftheTeam = teamStats();
         let wins = 0;
@@ -46,7 +46,6 @@ var calculateTeamStatistic = (function () {
         let sel = document.getElementById("select-team-names");
         let teamName = sel.options[sel.selectedIndex].value;
         for (let i = 0; i < len; i += 1) {
-
 
             if (matchesOftheTeam[i].teamGuestName === teamName) {
 
@@ -67,9 +66,78 @@ var calculateTeamStatistic = (function () {
         return rate.toFixed(2);
     }
 
+    var shotAccuracy = function () {
+        let matchesOftheTeam = teamStats();
+
+        let accuracy = [0,0,0];
+
+        let finalPoint = 0;
+        let allShotsAttempt = 0;
+
+        let threePointsAttempt = 0;
+        let twoPointsAttempt = 0;
+        let freeTA = 0;
+        let threePoints = 0;
+        let twoPoints = 0;
+        let freeThrows = 0;
+
+        let sel = document.getElementById("select-team-names");
+        let teamName = sel.options[sel.selectedIndex].value;
+
+
+        for (let i = 0, len = matchesOftheTeam.length; i < len; i += 1) {
+
+            //like host
+            if (matchesOftheTeam[i].teamHostName === teamName) {
+                //atempts
+                allShotsAttempt += matchesOftheTeam[i].fgAttHost;
+                threePointsAttempt += matchesOftheTeam[i].threePointAttemptHost;
+                freeTA += matchesOftheTeam[i].freeThrowsAttemptHost;
+                //success
+                finalPoint += matchesOftheTeam[i].finalPointsHost;
+                threePoints += matchesOftheTeam[i].threePointMadeHost;
+                freeThrows += matchesOftheTeam[i].freeThrowsMadeHost;
+            }
+            //like guest
+            if (matchesOftheTeam[i].teamGuestName === teamName) {
+                //atempts
+                allShotsAttempt += matchesOftheTeam[i].fgAttGuest;
+                threePointsAttempt += matchesOftheTeam[i].threePointAttemptGuest;
+                freeTA += matchesOftheTeam[i].freeThrowsAttemptGuest;
+                //success
+                finalPoint += matchesOftheTeam[i].finalPointsGuest;
+                threePoints += matchesOftheTeam[i].threePointMadeGuest;
+                freeThrows += matchesOftheTeam[i].freeThrowsMadeGuest;
+            }
+        }
+
+        twoPointsAttempt = allShotsAttempt - threePointsAttempt;
+        twoPoints = (finalPoint  - (threePoints * 3)) / 2;
+        console.log("twoPointsAttempt " + twoPointsAttempt);
+        console.log("twoPoints " + twoPoints);
+        console.log("final p " + finalPoint);
+        console.log("threePoints " + threePoints);
+     
+        
+        //zero devision deffence
+        if (twoPointsAttempt !== 0) {
+            accuracy[0] =  ((twoPoints / twoPointsAttempt) * 100).toFixed(2);
+        } 
+        if (threePointsAttempt !== 0) {
+            accuracy[1] = ((threePoints / threePointsAttempt) * 100).toFixed(2);
+        } 
+        if (freeTA !== 0) {
+            accuracy[2] = ((freeThrows / freeTA) * 100).toFixed(2);
+        } 
+
+
+        return accuracy;
+    }
+
     return {
         teamStats: teamStats,
-        winRate: winRate
+        winRate: winRate,
+        shotAccuracy: shotAccuracy
     };
 
 })();

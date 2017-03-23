@@ -36,10 +36,16 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
 
     el.appendChild(container);
     btnCalculate.addEventListener("click", function calc() {
-        var arr1 = ["joro","petkan"];
-        var arr2 = [43,42];
-        drawChart(arr1, arr2);
-        calculateTeamStatistic.winRate();
+        const labelsTeams = ["two points accuracy","three point accuracy","free throws accuracy","win rate"];
+        //var statisticValues = [];
+
+        let win = calculateTeamStatistic.winRate();
+        
+        let statisticValues = calculateTeamStatistic.shotAccuracy();
+        statisticValues.push(win);
+        
+        console.log(statisticValues);
+        drawChart(labelsTeams, statisticValues);
 
         // console.log(calculateTeamStatistic.winRate());
     });
@@ -73,8 +79,6 @@ function createSelectTeamNames() {
         opt.innerHTML = uniqTeamsArray[i];
         select.appendChild(opt);
     }
-
-    
 
     return select;
 }
