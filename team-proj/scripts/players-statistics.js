@@ -149,4 +149,6 @@ function calculatePlayerData(playerName) {
 }
 
 
+//TODO: make the $list scroll top on button click
 //TODO: encapsulate the logic in 1 function
+//TODO: add a clearChart() on the compare players button
