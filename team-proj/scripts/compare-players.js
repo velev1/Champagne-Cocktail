@@ -1,5 +1,10 @@
 var players = getPlayerData();
 
+var $label1 = $("<h4>");
+var $label2 = $("<h4>");
+var $p1 = $("<p>");
+var $p2 = $("<p>");
+
 var btn = document.getElementById("btnComparePlayers");
 btn.addEventListener("click", function createOptionsTeamsStatistics() {
     var el = document.getElementById("options-container");
@@ -61,41 +66,41 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
 
         var draw = getCharts;
         var drawObj = {
-        type: 'bar',
-        data: {
-            labels: labelArray,
-            datasets: [
-                {
-                    label: firstPlayerName,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255,99,132,1)',
-                    data: firstPlayerDataArray,
-                    borderWidth: 1
-                },
-                {
-                    label: secondPlayerName,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    data: secondPlayerDataArray,
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            legend: {
-                display: false //added by me
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        max: 100, //added by men
-                        min: 0, //added by me
-                        beginAtZero: true
+            type: 'bar',
+            data: {
+                labels: labelArray,
+                datasets: [
+                    {
+                        label: firstPlayerName,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255,99,132,1)',
+                        data: firstPlayerDataArray,
+                        borderWidth: 1
+                    },
+                    {
+                        label: secondPlayerName,
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        data: secondPlayerDataArray,
+                        borderWidth: 1
                     }
-                }]
+                ]
+            },
+            options: {
+                legend: {
+                    display: false //added by me
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            max: 100, //added by men
+                            min: 0, //added by me
+                            beginAtZero: true
+                        }
+                    }]
+                }
             }
-        }
-    };
+        };
 
         //clear and draw
         clearChart();
@@ -103,10 +108,8 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
         var myChart = new Chart(ctx, drawObj);
 
         //add the non-percentage values to the container
-        var $label1 = $("<h4>").text(firstPlayerName);
-        var $label2 = $("<h4>").text(secondPlayerName);
-        var $p1 = $("<p>");
-        var $p2 = $("<p>");
+        $label1.text(firstPlayerName);
+        $label2.text(secondPlayerName);
         addNonPercentageValues($p1, firstPlayerDataObj);
         addNonPercentageValues($p2, secondPlayerDataObj);
 
@@ -120,12 +123,12 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
             el.html(elText.replace(/\n/g, '<br />'));
         }
 
-        container.appendChild($label1.get(0));
-        container.appendChild($p1.get(0));
-        container.appendChild($label2.get(0));
-        container.appendChild($p2.get(0));
-    });
 
+    });
+    container.appendChild($label1.get(0));
+    container.appendChild($p1.get(0));
+    container.appendChild($label2.get(0));
+    container.appendChild($p2.get(0));
     container.appendChild(btnCalculate);
 
     el.appendChild(container);
