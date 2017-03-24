@@ -12,12 +12,14 @@
 
 
 var calculateTeamStatistic = (function () {
+    
 
     var teamStats = function () {
         var data = teamData();
         var filteredArrbyName = [];
-
+        
         let sel = document.getElementById("select-team-names");
+        
         let teamName = sel.options[sel.selectedIndex].value;
 
         for (let i = 0, len = data.length; i < len; i += 1) {
@@ -35,15 +37,18 @@ var calculateTeamStatistic = (function () {
     //Win rate for the season for each team separately 
     // All wins devided 
 
-    var winRate = function () {
+    var winRate = function (id) {
         let rate;
         //let teamMatchesContainer = [];
 
         let matchesOftheTeam = teamStats();
         let wins = 0;
-
+        
         let len = matchesOftheTeam.length;
-        let sel = document.getElementById("select-team-names");
+        //TODO select by something else not id
+        // let sel = document.getElementById("select-team-names");
+        let sel = document.getElementById(id);
+        
         let teamName = sel.options[sel.selectedIndex].value;
         for (let i = 0; i < len; i += 1) {
 
@@ -66,7 +71,7 @@ var calculateTeamStatistic = (function () {
         return rate.toFixed(2);
     }
 
-    var shotAccuracy = function () {
+    var shotAccuracy = function (id) {
         let matchesOftheTeam = teamStats();
 
         let accuracy = [0,0,0];
@@ -80,8 +85,8 @@ var calculateTeamStatistic = (function () {
         let threePoints = 0;
         let twoPoints = 0;
         let freeThrows = 0;
-
-        let sel = document.getElementById("select-team-names");
+        //TODO select by something else not by id
+        let sel = document.getElementById(id);
         let teamName = sel.options[sel.selectedIndex].value;
 
 
