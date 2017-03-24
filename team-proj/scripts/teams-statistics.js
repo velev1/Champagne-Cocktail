@@ -7,6 +7,7 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
         el.removeChild(el.firstChild);
     }
     clearChart();
+    
     var container = document.createElement("div");
     var titleAside = document.createElement("h4");
     titleAside.innerHTML = "Team statistics";
@@ -20,11 +21,13 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     div.appendChild(lblTeamName);
 
     var crrSelect = createSelectTeamNames();
-    // select.setAttribute("id", "select-team-names")
-    crrSelect.setAttribute("id", "select-team-names");
     div.appendChild(crrSelect);
     container.appendChild(div);
-
+    
+    let logoCanvas=document.createElement('canvas');
+    logoCanvas.setAttribute('id','teamLogo');
+    container.appendChild(logoCanvas);
+    
     var btnCalculate = document.createElement("input");
     btnCalculate.setAttribute("type", "button");
     btnCalculate.setAttribute("class", "customButton");
@@ -33,22 +36,21 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
 
 
     container.appendChild(btnCalculate);
-
+    container.appendChild(logoCanvas);
 
 
     el.appendChild(container);
     btnCalculate.addEventListener("click", function calc() {
         const labelsTeams = ["two points accuracy","three point accuracy","free throws accuracy","win rate"];
         //var statisticValues = [];
-         var id = "select-team-names"
-        let win = calculateTeamStatistic.winRate(id);
-       
-        let statisticValues = calculateTeamStatistic.shotAccuracy(id);
+        let win = calculateTeamStatistic.winRate();
+        
+        let statisticValues = calculateTeamStatistic.shotAccuracy();
         statisticValues.push(win);
         
         console.log(statisticValues);
         drawChart(labelsTeams, statisticValues);
-
+        DrawLogos('Washington');
         // console.log(calculateTeamStatistic.winRate());
     });
 
@@ -68,6 +70,7 @@ function createSelectTeamNames() {
     var uniqTeamsArray = Object.keys(uniqTeams).sort();
 
     var select = document.createElement("select");
+    select.setAttribute("id", "select-team-names")
 
     let opt = document.createElement("option");
     opt.setAttribute("value", 0);

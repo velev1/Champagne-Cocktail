@@ -89,13 +89,18 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
             draw(drawObj);
 
             //adding the non-percentage data to the paragraph
-            $p.text("Total fouls for the season: " + values.personalFouls + "\n" +
-                "Total rebounds for the season: " + values.rebounds + "\n" +
-                "Total assists for the season: " + values.assists + "\n" +
-                "Total blocks for the season: " + values.blocks + "\n" +
-                "Total steals for the season: " + values.steals);
-            var $pText = $p.text();
-            $p.html($pText.replace(/\n/g, '<br />'));
+            addNonPercentageValues($p, values);
+            
+            function addNonPercentageValues(el, dataObj) {
+                el.text("Total fouls for the season: " + dataObj.personalFouls + "\n" +
+                    "Total rebounds for the season: " + dataObj.rebounds + "\n" +
+                    "Total assists for the season: " + dataObj.assists + "\n" +
+                    "Total blocks for the season: " + dataObj.blocks + "\n" +
+                    "Total steals for the season: " + dataObj.steals);
+                var elText = el.text();
+                el.html(elText.replace(/\n/g, '<br />'));
+            }
+
         });
 
         list.appendChild($li.get(0));
@@ -152,3 +157,4 @@ function calculatePlayerData(playerName) {
 //TODO: make the $list scroll top on button click
 //TODO: encapsulate the logic in 1 function
 //TODO: add a clearChart() on the compare players button
+//TODO: make a function from the creating of the non-percentage data
