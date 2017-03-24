@@ -1,5 +1,5 @@
 
-function DrawLogos(team) {
+function drawLogos(team) {
     let currentCanvas = document.getElementById('teamLogo');
     let currentContext = currentCanvas.getContext('2d');
     let teamImg = document.getElementById("teamsImg");
