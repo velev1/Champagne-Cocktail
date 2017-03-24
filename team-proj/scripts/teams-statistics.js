@@ -21,6 +21,8 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     div.appendChild(lblTeamName);
 
     var crrSelect = createSelectTeamNames();
+    // select.setAttribute("id", "select-team-names")
+    crrSelect.setAttribute("id", "select-team-names");
     div.appendChild(crrSelect);
     container.appendChild(div);
     
@@ -43,9 +45,16 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     btnCalculate.addEventListener("click", function calc() {
         const labelsTeams = ["two points accuracy","three point accuracy","free throws accuracy","win rate"];
         //var statisticValues = [];
-        let win = calculateTeamStatistic.winRate();
+
+         var id = "select-team-names"
+        let win = calculateTeamStatistic.winRate(id);
+       
+        let statisticValues = calculateTeamStatistic.shotAccuracy(id);
+
+        // let win = calculateTeamStatistic.winRate();
         
-        let statisticValues = calculateTeamStatistic.shotAccuracy();
+        // let statisticValues = calculateTeamStatistic.shotAccuracy();
+
         statisticValues.push(win);
         
         console.log(statisticValues);
@@ -70,8 +79,11 @@ function createSelectTeamNames() {
     var uniqTeamsArray = Object.keys(uniqTeams).sort();
 
     var select = document.createElement("select");
+<<<<<<< HEAD
+=======
 
     select.setAttribute("id", "select-team-names")
+>>>>>>> 9af54271f99099eac6f849c1f824792be0f92fbd
 
     let opt = document.createElement("option");
     opt.setAttribute("value", 0);
