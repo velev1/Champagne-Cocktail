@@ -79,6 +79,11 @@ function createSelectTeamNames() {
     var uniqTeamsArray = Object.keys(uniqTeams).sort();
 
     var select = document.createElement("select");
+<<<<<<< HEAD
+=======
+
+    select.setAttribute("id", "select-team-names")
+>>>>>>> 9af54271f99099eac6f849c1f824792be0f92fbd
 
     let opt = document.createElement("option");
     opt.setAttribute("value", 0);
