@@ -195,6 +195,13 @@ footer {
     font-weight: bold;
 }
 
+div div label {
+    display: block;
+}
+
+#lebelHolder {
+    display: flex;
+}
 
 /*some colors
 f9cf00 - light(yellow)

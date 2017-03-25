@@ -77,39 +77,67 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
             //div1  div2
             //lebels div1 
             //lebels div2 (values)
-            if (document.contains(document.getElementById("lebelHolder"))) {
-                document.getElementById("lebelHolder").remove();
-            }
+            setStatisticLabels(id);
 
-            let divStatisticsText = document.createElement("div");
-            divStatisticsText.setAttribute("id", "lebelHolder");
-         
-            divStatisticsText.setAttribute("display", "flex");
-            let leftDiv = document.createElement("div");
-            let lblPersonalFoulsText = document.createElement("label");
-            lblPersonalFoulsText.innerHTML = "Personal fouls: ";
-            let lblReboundsText = document.createElement("label");
-            lblReboundsText.innerHTML = "Rebounds: ";
-            let lblAssistsText = document.createElement("label");
-            lblAssistsText.innerHTML = "Assists: ";
-            let lblBlocksText = document.createElement("label");
-            lblBlocksText.innerHTML = "Blocks: ";
-            let lblStealsText = document.createElement("label");
-            lblStealsText.innerHTML = "Steals: ";
-
-            leftDiv.appendChild(lblPersonalFoulsText);
-            leftDiv.appendChild(lblReboundsText);
-            leftDiv.appendChild(lblAssistsText);
-            leftDiv.appendChild(lblBlocksText);
-            leftDiv.appendChild(lblStealsText);
-
-            divStatisticsText.appendChild(leftDiv);
-
-            let rightDiv = document.createElement("div");
-
-            container.appendChild(divStatisticsText);
         }
     });
+
+    function setStatisticLabels(id) {
+
+        if (document.contains(document.getElementById("lebelHolder"))) {
+            document.getElementById("lebelHolder").remove();
+        }
+
+        let divStatisticsText = document.createElement("div");
+        divStatisticsText.setAttribute("id", "lebelHolder");
+
+        
+        let leftDiv = document.createElement("div");
+        let lblPersonalFoulsText = document.createElement("label");
+        lblPersonalFoulsText.innerHTML = "Personal fouls: ";
+        let lblReboundsText = document.createElement("label");
+        lblReboundsText.innerHTML = "Rebounds: ";
+        let lblAssistsText = document.createElement("label");
+        lblAssistsText.innerHTML = "Assists: ";
+        let lblBlocksText = document.createElement("label");
+        lblBlocksText.innerHTML = "Blocks: ";
+        let lblStealsText = document.createElement("label");
+        lblStealsText.innerHTML = "Steals: ";
+
+        leftDiv.appendChild(lblPersonalFoulsText);
+        leftDiv.appendChild(lblReboundsText);
+        leftDiv.appendChild(lblAssistsText);
+        leftDiv.appendChild(lblBlocksText);
+        leftDiv.appendChild(lblStealsText);
+
+        
+
+        divStatisticsText.appendChild(leftDiv);
+
+        let rightDiv = document.createElement("div");
+         let lblPersonalFoulsValue = document.createElement("label");
+        lblPersonalFoulsValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).personalFouls;
+        let lblReboundsValue = document.createElement("label");
+        lblReboundsValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).rebounds;
+        let lblAssistsValue = document.createElement("label");
+        lblAssistsValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).assists;
+        let lblBlocksValue = document.createElement("label");
+        lblBlocksValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).blocks;
+        let lblStealsValue = document.createElement("label");
+        lblStealsValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).steals;
+
+        rightDiv.appendChild(lblPersonalFoulsValue);
+        rightDiv.appendChild(lblReboundsValue);
+        rightDiv.appendChild(lblAssistsValue);
+        rightDiv.appendChild(lblBlocksValue);
+        rightDiv.appendChild(lblStealsValue);
+        
+        divStatisticsText.appendChild(rightDiv);
+        container.appendChild(divStatisticsText);
+        
+
+
+    }
 });
 
 function createSelectTeamNames() {
@@ -138,3 +166,4 @@ function createSelectTeamNames() {
 
     return select;
 }
+
