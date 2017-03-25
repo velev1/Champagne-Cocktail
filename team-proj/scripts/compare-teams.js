@@ -11,6 +11,7 @@ btn.addEventListener("click", function createOptionsCompareTeams() {
     clearChart();
 
     var container = document.createElement("div");
+    container.setAttribute("class","options-container");
     var titleAside = document.createElement("h4");
     titleAside.innerHTML = "First team:";
     container.appendChild(titleAside);

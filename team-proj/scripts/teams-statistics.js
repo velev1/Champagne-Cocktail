@@ -9,6 +9,7 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     clearChart();
 
     var container = document.createElement("div");
+    container.setAttribute("class", "options-container");
     var titleAside = document.createElement("h4");
     titleAside.innerHTML = "Team statistics";
     container.appendChild(titleAside);

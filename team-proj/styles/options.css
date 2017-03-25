@@ -23,9 +23,11 @@
     border-radius: 10px;
 }*/
 
-.test {
-    background-color: white;
+.options-container {
+    background-image: url('imgs/metal.png');
     border-radius: 10px;
+    box-shadow: 10px 10px 5px #888888;
+    padding: 25px;
 }
 
 /*#charts-container {
