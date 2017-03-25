@@ -131,6 +131,12 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     container.appendChild($p2.get(0));
     container.appendChild(btnCalculate);
 
+    //clear the labels and paragraphs if the button is clicked again
+    clearText($label1);
+    clearText($label2);
+    clearText($p1);
+    clearText($p2);
+
     el.appendChild(container);
 });
 
@@ -152,4 +158,10 @@ function createSelectPlayerNames() {
     }
 
     return select;
+}
+
+function clearText(el) {
+    if (el.text() !== "") {
+        el.text("");
+    }
 }
