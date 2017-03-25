@@ -115,7 +115,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
     conteiner.appendChild($list.get(0));
     conteiner.appendChild($label1.get(0));
     conteiner.appendChild($p.get(0));
-    conteiner.className += " test"; // background for the div
+    conteiner.className += " options-container"; // background for the div
     el.appendChild(conteiner);
 });
 
