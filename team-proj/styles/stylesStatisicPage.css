@@ -186,6 +186,15 @@ footer {
     transform: translateY(4px);
 }
 
+.hidden-message {
+    display: none;
+}
+
+.warning {
+    color: red;
+    font-weight: bold;
+}
+
 
 /*some colors
 f9cf00 - light(yellow)

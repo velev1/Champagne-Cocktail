@@ -7,68 +7,112 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
         el.removeChild(el.firstChild);
     }
     clearChart();
-    
+
     var container = document.createElement("div");
     var titleAside = document.createElement("h4");
     titleAside.innerHTML = "Team statistics";
     container.appendChild(titleAside);
+    var message = document.createElement("label");
+    message.innerHTML = "Please select a team.";
+    message.setAttribute("class", "hidden-message");
+    message.classList.add("warning");
+
+    message.setAttribute("id", "message-not-selected-team");
+    container.appendChild(message);
 
     var div = document.createElement("div");
-
-
     var lblTeamName = document.createElement("label");
     lblTeamName.innerHTML = "Team name:";
     div.appendChild(lblTeamName);
 
-    var crrSelect = createSelectTeamNames();
-    // select.setAttribute("id", "select-team-names")
-    crrSelect.setAttribute("id", "select-team-names");
-    div.appendChild(crrSelect);
+    var selectTeams = createSelectTeamNames();
+    selectTeams.setAttribute("id", "select-team-names");
+    div.appendChild(selectTeams);
     container.appendChild(div);
-    
-    let logoCanvas=document.createElement('canvas');
-    logoCanvas.setAttribute('id','teamLogo');
-    container.appendChild(logoCanvas);
-    
+
     var btnCalculate = document.createElement("input");
     btnCalculate.setAttribute("type", "button");
     btnCalculate.setAttribute("class", "customButton");
     btnCalculate.setAttribute("value", "Calculate");
     btnCalculate.setAttribute("id", "btnCalculateTeamStats");
 
+    var btnContainer = document.createElement("div");
+    btnContainer.appendChild(btnCalculate);
 
-    container.appendChild(btnCalculate);
-    container.appendChild(logoCanvas);
-
+    container.appendChild(btnContainer);
+    // container.appendChild(logoCanvas);
 
     el.appendChild(container);
     btnCalculate.addEventListener("click", function calc() {
-        const labelsTeams = ["two points accuracy","three point accuracy","free throws accuracy","win rate"];
-        //var statisticValues = [];
+        const labelsTeams = ["two points accuracy", "three point accuracy", "free throws accuracy", "win rate"];
 
-         var id = "select-team-names"
+        var id = "select-team-names"
+
         let win = calculateTeamStatistic.winRate(id);
-       
         let statisticValues = calculateTeamStatistic.shotAccuracy(id);
-
-        // let win = calculateTeamStatistic.winRate();
-        
-        // let statisticValues = calculateTeamStatistic.shotAccuracy();
-
         statisticValues.push(win);
-        
-        console.log(statisticValues);
-        drawChart(labelsTeams, statisticValues);
-        DrawLogos('Washington');
-        // console.log(calculateTeamStatistic.winRate());
-    });
+        let teamName = selectTeams.options[selectTeams.selectedIndex].value;
 
-    // var bla = calculateTeamStatistic.teamStats();
-    // console.log(bla);
+        if (teamName === "not selected") {
+            message.classList.remove("hidden-message");
+        } else {
+
+            if (message.classList.length === 1) {
+                message.classList.add("hidden-message")
+            }
+
+            if (document.contains(document.getElementById("teamLogo"))) {
+                document.getElementById("teamLogo").remove();
+            }
+
+            let logoCanvas = document.createElement('canvas');
+            logoCanvas.setAttribute('id', 'teamLogo');
+            container.appendChild(logoCanvas);
+            drawChart(labelsTeams, statisticValues);
+            drawLogos(teamName);
+
+            let stats = calculateTeamStatistic.detailedStatistics(id);
+
+            //div - flex
+            //div1  div2
+            //lebels div1 
+            //lebels div2 (values)
+            if (document.contains(document.getElementById("lebelHolder"))) {
+                document.getElementById("lebelHolder").remove();
+            }
+
+            let divStatisticsText = document.createElement("div");
+            divStatisticsText.setAttribute("id", "lebelHolder");
+         
+            divStatisticsText.setAttribute("display", "flex");
+            let leftDiv = document.createElement("div");
+            let lblPersonalFoulsText = document.createElement("label");
+            lblPersonalFoulsText.innerHTML = "Personal fouls: ";
+            let lblReboundsText = document.createElement("label");
+            lblReboundsText.innerHTML = "Rebounds: ";
+            let lblAssistsText = document.createElement("label");
+            lblAssistsText.innerHTML = "Assists: ";
+            let lblBlocksText = document.createElement("label");
+            lblBlocksText.innerHTML = "Blocks: ";
+            let lblStealsText = document.createElement("label");
+            lblStealsText.innerHTML = "Steals: ";
+
+            leftDiv.appendChild(lblPersonalFoulsText);
+            leftDiv.appendChild(lblReboundsText);
+            leftDiv.appendChild(lblAssistsText);
+            leftDiv.appendChild(lblBlocksText);
+            leftDiv.appendChild(lblStealsText);
+
+            divStatisticsText.appendChild(leftDiv);
+
+            let rightDiv = document.createElement("div");
+
+            container.appendChild(divStatisticsText);
+        }
+    });
 });
 
 function createSelectTeamNames() {
-
     var teams = teamData();
     var uniqTeams = {};
 
@@ -76,17 +120,12 @@ function createSelectTeamNames() {
         uniqTeams[t.teamHostName] = true;
         uniqTeams[t.teamGuestName] = true;
     });
+
     var uniqTeamsArray = Object.keys(uniqTeams).sort();
 
     var select = document.createElement("select");
-<<<<<<< HEAD
-=======
-
-    select.setAttribute("id", "select-team-names")
->>>>>>> 9af54271f99099eac6f849c1f824792be0f92fbd
-
     let opt = document.createElement("option");
-    opt.setAttribute("value", 0);
+    opt.setAttribute("value", "not selected");
     opt.innerHTML = "select team";
     select.appendChild(opt);
 

@@ -3,23 +3,20 @@
 // -	Win rate for the season for each team separately 
 // -	Accuracy of three points 
 // -	Accuracy of two points 
+
 // -	Free throws accuracy 
-// -	Personal fouls for the season 
-// -	Rebounds per game
-// -	Assists per game
-// -	Blocks per game
-// -	Steals per game
+
 
 
 var calculateTeamStatistic = (function () {
-    
 
+    //TODO add parameter to the function id.
     var teamStats = function () {
         var data = teamData();
         var filteredArrbyName = [];
-        
+
         let sel = document.getElementById("select-team-names");
-        
+
         let teamName = sel.options[sel.selectedIndex].value;
 
         for (let i = 0, len = data.length; i < len; i += 1) {
@@ -43,12 +40,10 @@ var calculateTeamStatistic = (function () {
 
         let matchesOftheTeam = teamStats();
         let wins = 0;
-        
+
         let len = matchesOftheTeam.length;
-        //TODO select by something else not id
-        // let sel = document.getElementById("select-team-names");
         let sel = document.getElementById(id);
-        
+
         let teamName = sel.options[sel.selectedIndex].value;
         for (let i = 0; i < len; i += 1) {
 
@@ -74,7 +69,7 @@ var calculateTeamStatistic = (function () {
     var shotAccuracy = function (id) {
         let matchesOftheTeam = teamStats();
 
-        let accuracy = [0,0,0];
+        let accuracy = [0, 0, 0];
 
         let finalPoint = 0;
         let allShotsAttempt = 0;
@@ -117,32 +112,79 @@ var calculateTeamStatistic = (function () {
         }
 
         twoPointsAttempt = allShotsAttempt - threePointsAttempt;
-        twoPoints = (finalPoint  - (threePoints * 3)) / 2;
+        twoPoints = (finalPoint - (threePoints * 3)) / 2;
         console.log("twoPointsAttempt " + twoPointsAttempt);
         console.log("twoPoints " + twoPoints);
         console.log("final p " + finalPoint);
         console.log("threePoints " + threePoints);
-     
-        
+
+
         //zero devision deffence
         if (twoPointsAttempt !== 0) {
-            accuracy[0] =  ((twoPoints / twoPointsAttempt) * 100).toFixed(2);
-        } 
+            accuracy[0] = ((twoPoints / twoPointsAttempt) * 100).toFixed(2);
+        }
         if (threePointsAttempt !== 0) {
             accuracy[1] = ((threePoints / threePointsAttempt) * 100).toFixed(2);
-        } 
+        }
         if (freeTA !== 0) {
             accuracy[2] = ((freeThrows / freeTA) * 100).toFixed(2);
-        } 
+        }
 
 
         return accuracy;
     }
 
+    var detailedStatistics = function (id) {
+
+        let matchesOftheTeam = teamStats();
+        let len = matchesOftheTeam.length;
+        let sel = document.getElementById(id);
+
+        let teamName = sel.options[sel.selectedIndex].value;
+        // let personalFouls = 0;
+        // let assists = 0;
+        // let personalFouls = 0;
+        let statisticHolder = {
+            personalFouls: 0,
+            rebounds : 0,
+            assists: 0,
+            blocks: 0,
+            steals: 0
+        }
+
+        for (let i = 0; i < len; i += 1) {
+            //host
+            if (matchesOftheTeam[i].teamHostName === teamName) {
+                statisticHolder.personalFouls += matchesOftheTeam[i].personalFoulsHost;
+                statisticHolder.rebounds += matchesOftheTeam[i].reboundsHost;
+                statisticHolder.assists += matchesOftheTeam[i].assistsHost;
+                statisticHolder.blocks += matchesOftheTeam[i].blocksHost;
+                statisticHolder.steals += matchesOftheTeam[i].assistsHost;
+            }
+            //guest
+            if (matchesOftheTeam[i].teamGuestName === teamName) {
+                statisticHolder.personalFouls += matchesOftheTeam[i].personalFoulsGuest;
+                statisticHolder.rebounds += matchesOftheTeam[i].reboundsGuest;
+                statisticHolder.assists += matchesOftheTeam[i].assistsGuest;
+                statisticHolder.blocks += matchesOftheTeam[i].blocksGuest;
+                statisticHolder.steals += matchesOftheTeam[i].assistsGuest;
+            }
+        }
+
+
+        return statisticHolder;
+    }
+    // -	Personal fouls for the season 
+    // -	Rebounds per game
+    // -	Assists per game
+    // -	Blocks per game
+    // -	Steals per game
+
     return {
         teamStats: teamStats,
         winRate: winRate,
-        shotAccuracy: shotAccuracy
+        shotAccuracy: shotAccuracy,
+        detailedStatistics: detailedStatistics
     };
 
 })();
