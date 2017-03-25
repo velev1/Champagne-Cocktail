@@ -36,7 +36,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
 
 
     var $choose = $("<button>")
-        .addClass("customButton")
+        .addClass("customButtonOptions")
         .addClass("centered")
         .html("Choose a player")
         .css("margin", "10px 35px")

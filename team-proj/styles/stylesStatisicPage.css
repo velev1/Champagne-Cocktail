@@ -187,6 +187,28 @@ footer {
     transform: translateY(4px);
 }
 
+.customButtonOptions {
+         border:none;
+    /*background-color: #3399ff;*/
+    color:#fff;
+    width:160px;
+     height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 5px 8px 5px #aeafb3;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4484ce+0,146acc+50,4484ce+100 */
+    background: #4484ce; /* Old browsers */
+    background: -moz-linear-gradient(top, #4484ce 0%, #146acc 50%, #4484ce 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #4484ce 0%,#146acc 50%,#4484ce 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #4484ce 0%,#146acc 50%,#4484ce 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4484ce', endColorstr='#4484ce',GradientType=0 ); /* IE6-9 */
+    }
+
+.customButtonOptions:active {
+    box-shadow: 2px 4px 2px #aeafb3;
+    transform: translateY(4px);
+}
+
 .hidden-message {
     display: none;
 }
@@ -208,7 +230,7 @@ select {
     border:2px solid #4484ce;
     border-radius: 5px;
     padding:3px;
-    width:140px;
+    width:160px;
     height: 30px;
     color:#4484ce;
     font-weight: bold;

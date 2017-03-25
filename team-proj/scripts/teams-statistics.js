@@ -33,7 +33,7 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
 
     var btnCalculate = document.createElement("input");
     btnCalculate.setAttribute("type", "button");
-    btnCalculate.setAttribute("class", "customButton");
+    btnCalculate.setAttribute("class", "customButtonOptions");
     btnCalculate.setAttribute("value", "Calculate");
     btnCalculate.setAttribute("id", "btnCalculateTeamStats");
 
