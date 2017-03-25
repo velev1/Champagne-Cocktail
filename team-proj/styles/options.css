@@ -1,6 +1,6 @@
 .player-list {
     list-style-type: none;
-    overflow: scroll;
+    overflow-y: scroll;
     height: 50%;
     margin: 5px 35px
 }
