@@ -41,6 +41,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
         .html("Choose a player")
         .css("margin", "10px 35px")
         .on("click", function (e) {
+            $img.toggle();
             $list.toggle();
             $label1.toggle();
             $p.toggle();
@@ -48,6 +49,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
     var $label1 = $("<h4>");
     var $p = $("<p>");
 
+    var $img = $("<img>");
     var $list;
     var $li;
     for (let i = 0, len = uniqNamesArray.length; i < len; i += 1) {
@@ -68,7 +70,11 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
             $label1.html("Selected player: " + $target.html());
             $label1.show();
             $p.show();
+            $img.show();
             $list.toggle();
+
+            //img details
+            $img.attr("src", "./styles/imgs/Players/" + $target.html() + ".png");
 
             //graph data
             var dataArray = calculatePlayerData($target.html()).resultArray;
@@ -115,6 +121,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
     conteiner.appendChild($list.get(0));
     conteiner.appendChild($label1.get(0));
     conteiner.appendChild($p.get(0));
+    conteiner.appendChild($img.get(0));
     conteiner.className += " options-container"; // background for the div
     el.appendChild(conteiner);
 });
