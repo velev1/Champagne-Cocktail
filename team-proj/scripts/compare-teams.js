@@ -31,7 +31,16 @@ btn.addEventListener("click", function createOptionsCompareTeams() {
     container.appendChild(titleAside);
     container.appendChild(secondTeamSelect);
 
-    
+    var btnCalculate = document.createElement("input");
+    btnCalculate.setAttribute("type", "button");
+    btnCalculate.setAttribute("class", "customButtonOptions");
+    btnCalculate.setAttribute("value", "Calculate");
+    btnCalculate.setAttribute("id", "btnCalculateTeamStats");
+
+    var btnContainer = document.createElement("div");
+    btnContainer.appendChild(btnCalculate);
+
+    container.appendChild(btnContainer);
 
     el.appendChild(container);
 
