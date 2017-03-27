@@ -11,11 +11,11 @@
 var calculateTeamStatistic = (function () {
 
     //TODO add parameter to the function id.
-    var teamStats = function () {
+    var teamStats = function (id) {
         var data = teamData();
         var filteredArrbyName = [];
 
-        let sel = document.getElementById("select-team-names");
+        let sel = document.getElementById(id);
 
         let teamName = sel.options[sel.selectedIndex].value;
 
@@ -38,7 +38,7 @@ var calculateTeamStatistic = (function () {
         let rate;
         //let teamMatchesContainer = [];
 
-        let matchesOftheTeam = teamStats();
+        let matchesOftheTeam = teamStats(id);
         let wins = 0;
 
         let len = matchesOftheTeam.length;
@@ -67,7 +67,7 @@ var calculateTeamStatistic = (function () {
     }
 
     var shotAccuracy = function (id) {
-        let matchesOftheTeam = teamStats();
+        let matchesOftheTeam = teamStats(id);
 
         let accuracy = [0, 0, 0];
 
@@ -136,7 +136,7 @@ var calculateTeamStatistic = (function () {
 
     var detailedStatistics = function (id) {
 
-        let matchesOftheTeam = teamStats();
+        let matchesOftheTeam = teamStats(id);
         let len = matchesOftheTeam.length;
         let sel = document.getElementById(id);
 
