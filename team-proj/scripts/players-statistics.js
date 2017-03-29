@@ -37,7 +37,6 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
         .addClass("customButtonOptions")
         .addClass("centered")
         .html("Choose a player")
-        .css("margin", "10px 35px")
         .on("click", function (e) {
             $img.toggle();
             $list.toggle();

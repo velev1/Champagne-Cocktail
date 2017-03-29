@@ -259,6 +259,20 @@ select {
         
 }
 
-/*some colors
-f9cf00 - light(yellow)
-f19f4d - tangerine (orange)*/
+footer p {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 438px) {
+    footer {
+        height: 70px;
+    }
+}
+
+@media only screen and (max-width: 1250px) {
+    ul {
+
+    }
+}
