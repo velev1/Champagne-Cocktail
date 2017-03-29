@@ -155,7 +155,7 @@ footer {
 
 @media only screen and (min-width: 366px) {
 .customButton {
-        border:none;
+        border:1px solid #3399ff;
         margin-bottom:10px;
         margin-left: 3px;
         background-color: #fff;
@@ -164,6 +164,7 @@ footer {
         color:#3399ff;
         font-family: sans-serif;
         font-size: 14px;
+        font-weight: bold;
     }
 }
 
