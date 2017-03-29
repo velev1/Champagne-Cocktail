@@ -4,6 +4,7 @@
 }
 
 body {
+    font-family: sans-serif;
     width:100%;
     display: flex;
     justify-content: center;
@@ -19,9 +20,9 @@ body {
     display: flex;
     flex-flow: row wrap;
 }
-@media only screen and (max-width: 366px) {
+@media only screen and (max-width: 430px) {
     #wrapper {
-        width:90%;
+        width: 100%;
         display: flex;
         flex-flow: column;
     }
@@ -41,6 +42,13 @@ header {
     display:flex;
     justify-content: center;
     flex-flow: row wrap;
+}
+
+/*test*/
+@media only screen and (max-width: 430px) {
+    header {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 694px) {
@@ -155,7 +163,7 @@ footer {
 
 @media only screen and (min-width: 366px) {
 .customButton {
-        border:1px solid #3399ff;
+        border: none;
         margin-bottom:10px;
         margin-left: 3px;
         background-color: #fff;
@@ -167,6 +175,13 @@ footer {
         font-weight: bold;
     }
 }
+/*test*/
+@media only screen and (max-width: 430px) {
+    header img {
+        width: 250px;
+    }
+}
+
 
 .customButton:hover{
     border:none;

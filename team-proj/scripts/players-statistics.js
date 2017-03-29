@@ -2,7 +2,7 @@
 
 var players = getPlayerData();
 
-var $containerDiv = $("<div>").addClass("div-container");
+var $containerDiv = $("<div>");
 var $options = $("#options-container");
 var $playerButton = $("#btnStatisticsPleyer");
 var $charts = $("#charts-container");
@@ -17,13 +17,11 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
         el.removeChild(el.firstChild);
     }
     //clear the chart container
-    while (charts.firstChild) {
-        charts.removeChild(charts.firstChild);
-    }
+    clearChart();
     $charts.append('<canvas id="myChart" style:"width:100% !important; height:100% !important"> </canvas>');
 
     var conteiner = document.createElement("div");
-    conteiner.className = "div-container";
+    //conteiner.className = "div-container";
     //appends :
     var uniqNamesObject = {};
     players.forEach(p => {
@@ -49,7 +47,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
     var $label1 = $("<h4>");
     var $p = $("<p>");
 
-    var $img = $("<img>");
+    var $img = $("<img>").attr("id", "playerImage");
     var $list;
     var $li;
     for (let i = 0, len = uniqNamesArray.length; i < len; i += 1) {
@@ -86,9 +84,7 @@ btn.addEventListener("click", function createOptionsPlayerStatistics() {
             drawObj.data.datasets[0].data = dataArray;
 
             //hide old graph
-            while (charts.firstChild) {
-                charts.removeChild(charts.firstChild);
-            }
+            clearChart();
             $charts.append('<canvas id="myChart" style:"width:100% !important; height:100% !important"> </canvas>');
 
             //draw new one

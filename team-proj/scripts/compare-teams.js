@@ -65,17 +65,19 @@ btn.addEventListener("click", function createOptionsCompareTeams() {
         
 
         if (firstSelection === "not selected") {
+            clearChart();
             messageFirstTeam.classList.remove("hidden-message");
         }else if(secondSelection === "not selected") {
+            clearChart();
             messageSecondTeam.classList.remove("hidden-message");
         }else{
 
             if (messageFirstTeam.classList.length === 1) {
-                messageFirstTeam.classList.add("hidden-message")
+                messageFirstTeam.classList.add("hidden-message");
             }
 
             if (messageSecondTeam.classList.length === 1) {
-                messageSecondTeam.classList.add("hidden-message")
+                messageSecondTeam.classList.add("hidden-message");
             }
 
             var firstTeamName = $(firstTeamSelect).find(":selected").text();

@@ -1,7 +1,7 @@
 .player-list {
     list-style-type: none;
     overflow-y: scroll;
-    height: 50%;
+    height: 300px;
     margin: 5px 35px
 }
 
@@ -17,11 +17,6 @@
     height: 100%;
 }
 
-/*#options-container {
-    background-color: white;
-    opacity: 0;
-    border-radius: 10px;
-}*/
 
 .options-container {
     background-image: url('imgs/metal.png');
@@ -30,11 +25,18 @@
     padding: 25px;
 }
 
-/*#charts-container {
-    background-color: white;
-    opacity: 0;
-    border-radius: 10px;
-}*/
+h4 {
+    color: darkblue;
+}
 
+label {
+    color: darkblue;
+}
 
-/*fix*/
+p {
+    color: darkblue;
+}
+
+#playerImage {
+    width: 80%;
+}

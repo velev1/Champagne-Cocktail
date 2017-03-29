@@ -45,34 +45,37 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
 
     el.appendChild(container);
     btnCalculate.addEventListener("click", function calc() {
-        const labelsTeams = ["two points accuracy", "three point accuracy", "free throws accuracy", "win rate"];
+        var labelsTeams = ["two points accuracy", "three point accuracy", "free throws accuracy", "win rate"];
 
-        var id = "select-team-names"
+        var id = "select-team-names";
 
-        let win = calculateTeamStatistic.winRate(id);
-        let statisticValues = calculateTeamStatistic.shotAccuracy(id);
+        var win = calculateTeamStatistic.winRate(id);
+        var statisticValues = calculateTeamStatistic.shotAccuracy(id);
         statisticValues.push(win);
-        let teamName = selectTeams.options[selectTeams.selectedIndex].value;
+        var teamName = selectTeams.options[selectTeams.selectedIndex].value;
 
         if (teamName === "not selected") {
+            clearChart();
+            $("#teamLogo").remove();
+            $("#lebelHolder").remove();
             message.classList.remove("hidden-message");
         } else {
 
             if (message.classList.length === 1) {
-                message.classList.add("hidden-message")
+                message.classList.add("hidden-message");
             }
 
             if (document.contains(document.getElementById("teamLogo"))) {
                 document.getElementById("teamLogo").remove();
             }
 
-            let logoCanvas = document.createElement('canvas');
+            var logoCanvas = document.createElement('canvas');
             logoCanvas.setAttribute('id', 'teamLogo');
             container.appendChild(logoCanvas);
             drawChart(labelsTeams, statisticValues);
             drawLogos(teamName);
 
-            let stats = calculateTeamStatistic.detailedStatistics(id);
+            var stats = calculateTeamStatistic.detailedStatistics(id);
 
             //div - flex
             //div1  div2
@@ -89,20 +92,20 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
             document.getElementById("lebelHolder").remove();
         }
 
-        let divStatisticsText = document.createElement("div");
+        var divStatisticsText = document.createElement("div");
         divStatisticsText.setAttribute("id", "lebelHolder");
 
         
-        let leftDiv = document.createElement("div");
-        let lblPersonalFoulsText = document.createElement("label");
+        var leftDiv = document.createElement("div");
+        var lblPersonalFoulsText = document.createElement("label");
         lblPersonalFoulsText.innerHTML = "Personal fouls: ";
-        let lblReboundsText = document.createElement("label");
+        var lblReboundsText = document.createElement("label");
         lblReboundsText.innerHTML = "Rebounds: ";
-        let lblAssistsText = document.createElement("label");
+        var lblAssistsText = document.createElement("label");
         lblAssistsText.innerHTML = "Assists: ";
-        let lblBlocksText = document.createElement("label");
+        var lblBlocksText = document.createElement("label");
         lblBlocksText.innerHTML = "Blocks: ";
-        let lblStealsText = document.createElement("label");
+        var lblStealsText = document.createElement("label");
         lblStealsText.innerHTML = "Steals: ";
 
         leftDiv.appendChild(lblPersonalFoulsText);
@@ -115,16 +118,16 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
 
         divStatisticsText.appendChild(leftDiv);
 
-        let rightDiv = document.createElement("div");
-         let lblPersonalFoulsValue = document.createElement("label");
+        var rightDiv = document.createElement("div");
+         var lblPersonalFoulsValue = document.createElement("label");
         lblPersonalFoulsValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).personalFouls;
-        let lblReboundsValue = document.createElement("label");
+        var lblReboundsValue = document.createElement("label");
         lblReboundsValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).rebounds;
-        let lblAssistsValue = document.createElement("label");
+        var lblAssistsValue = document.createElement("label");
         lblAssistsValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).assists;
-        let lblBlocksValue = document.createElement("label");
+        var lblBlocksValue = document.createElement("label");
         lblBlocksValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).blocks;
-        let lblStealsValue = document.createElement("label");
+        var lblStealsValue = document.createElement("label");
         lblStealsValue.innerHTML = calculateTeamStatistic.detailedStatistics(id).steals;
 
         rightDiv.appendChild(lblPersonalFoulsValue);
@@ -153,12 +156,12 @@ function createSelectTeamNames() {
     var uniqTeamsArray = Object.keys(uniqTeams).sort();
 
     var select = document.createElement("select");
-    let opt = document.createElement("option");
+    var opt = document.createElement("option");
     opt.setAttribute("value", "not selected");
     opt.innerHTML = "select team";
     select.appendChild(opt);
 
-    for (let i = 0, len = uniqTeamsArray.length; i < len; i += 1) {
+    for (var i = 0, len = uniqTeamsArray.length; i < len; i += 1) {
         opt = document.createElement("option");
         opt.setAttribute("value", uniqTeamsArray[i]);
         opt.innerHTML = uniqTeamsArray[i];

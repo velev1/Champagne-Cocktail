@@ -12,7 +12,7 @@ var getChartsObj = (function chart() {
         data: {
             labels: [],
             datasets: [{
-                label: '% for a successful shot',
+                label: '%',
                 data: [],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
