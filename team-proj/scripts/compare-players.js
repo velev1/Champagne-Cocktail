@@ -18,7 +18,7 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     var container = document.createElement("div");
     container.setAttribute("class","options-container");
     var titleAside = document.createElement("h4");
-    titleAside.innerHTML = "Choose players";
+    titleAside.innerHTML = "Choose basketball players to compare";
     container.appendChild(titleAside);
 
     var divAsideContainer = document.createElement("div");
@@ -26,7 +26,7 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     //first player dropdown menu
     var innerDivFirstPlayer = document.createElement("div");
     var lblFirstPlayerName = document.createElement("label");
-    lblFirstPlayerName.innerHTML = "First Player name:";
+    lblFirstPlayerName.innerHTML = "Name of the first player:";
     innerDivFirstPlayer.appendChild(lblFirstPlayerName);
 
 
@@ -38,7 +38,7 @@ btn.addEventListener("click", function createOptionsTeamsStatistics() {
     //second player dropdown menu
     var innerDivSecondPlayer = document.createElement("div");
     var lblSecondPlayerName = document.createElement("label");
-    lblSecondPlayerName.innerHTML = "Second Player name:";
+    lblSecondPlayerName.innerHTML = "Name of the second player:";
     innerDivSecondPlayer.appendChild(lblSecondPlayerName);
 
     divAsideContainer.appendChild(innerDivSecondPlayer);
