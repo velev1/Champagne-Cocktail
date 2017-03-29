@@ -10,7 +10,7 @@ btn.addEventListener("click", function createOptionsCompareTeams() {
     var container = document.createElement("div");
     container.setAttribute("class","options-container");
     var titleAside = document.createElement("h4");
-    titleAside.innerHTML = "First team:";
+    titleAside.innerHTML = "Select the first team:";
     container.appendChild(titleAside);
 
     var messageFirstTeam = document.createElement("label");
@@ -31,7 +31,7 @@ btn.addEventListener("click", function createOptionsCompareTeams() {
     secondTeamSelect.setAttribute("id", "second-team-select");
     
     var titleAside = document.createElement("h4");
-    titleAside.innerHTML = "Second team:";
+    titleAside.innerHTML = "Select the second team:";
     container.appendChild(titleAside);
 
     var messageSecondTeam = document.createElement("label");
